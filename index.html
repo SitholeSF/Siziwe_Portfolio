@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Siziwe Sithole — Unity Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f4f0;
+      --surface: #ffffff;
+      --text: #1a1a18;
+      --muted: #6b6b64;
+      --accent: #2d5a3d;
+      --accent-light: #e8f0eb;
+      --border: rgba(0,0,0,0.08);
+      --tag-bg: #efefeb;
+      --tag-text: #3a3a35;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 60px;
+      background: rgba(245,244,240,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 2.5rem; max-width: 960px; margin: 0 auto; }
+
+    /* ── HERO ── */
+    #hero {
+      padding-top: 9rem;
+      padding-bottom: 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-name {
+      font-size: clamp(2.8rem, 5vw, 4rem);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 400px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .hero-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .hero-cta-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.2s;
+      margin-left: 0.75rem;
+    }
+
+    .hero-cta-ghost:hover { background: var(--surface); transform: translateY(-1px); }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-badge-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .stat-card .num {
+      font-size: 2rem;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    .stat-card .lbl {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-top: 2px;
+    }
+
+    .stat-card.accent {
+      background: var(--accent);
+      border-color: transparent;
+      grid-column: span 2;
+    }
+
+    .stat-card.accent .num,
+    .stat-card.accent .lbl { color: rgba(255,255,255,0.9); }
+
+    /* ── DIVIDER ── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text {
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--text);
+    }
+
+    .about-text p + p { margin-top: 1rem; }
+
+    .contact-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-item:last-child { border-bottom: none; }
+
+    .contact-item .ci-label {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .contact-item .ci-value {
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .contact-item a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+
+    .skill-group h3 {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 12px;
+      border-radius: 4px;
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+    }
+
+    .tag.highlight {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    /* ── EXPERIENCE ── */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .timeline-item:last-child { border-bottom: none; }
+
+    .tl-date {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 400;
+      padding-top: 4px;
+    }
+
+    .tl-company {
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 4px;
+    }
+
+    .tl-role {
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .tl-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .tl-bullets li {
+      font-size: 14px;
+      color: var(--muted);
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .tl-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--border);
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.07);
+    }
+
+    .project-video-wrap {
+      position: relative;
+      background: #1a1a18;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.3);
+      font-size: 13px;
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+    }
+
+    .project-placeholder .play-icon {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-placeholder .play-icon::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-left: 12px solid rgba(255,255,255,0.4);
+      margin-left: 3px;
+    }
+
+    .project-body {
+      padding: 1.4rem 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-type {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .project-name {
+      font-size: 17px;
+      font-weight: 400;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+
+    .edu-card .degree {
+      font-size: 16px;
+      font-weight: 400;
+      margin-bottom: 0.3rem;
+    }
+
+    .edu-card .institution {
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    .edu-card .years {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem;
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-note {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-up {
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .fade-up:nth-child(1) { animation-delay: 0.1s; }
+    .fade-up:nth-child(2) { animation-delay: 0.2s; }
+    .fade-up:nth-child(3) { animation-delay: 0.3s; }
+    .fade-up:nth-child(4) { animation-delay: 0.4s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      nav .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; padding-top: 7rem; }
+      .hero-badge-grid { display: grid; grid-template-columns: 1fr 1fr; }
+      section { padding: 4rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">Siziwe Sithole</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div id="hero" style="padding-left: 2.5rem; padding-right: 2.5rem;">
+    <div>
+      <p class="hero-eyebrow fade-up">Unity Developer · 4 Years Experience</p>
+      <h1 class="hero-name fade-up">Siziwe<br><em>Sithole</em></h1>
+      <p class="hero-desc fade-up">Specialist in high-performance real-time 3D environments, interactive gaming interfaces, and immersive VR/AR applications. 4 years building across mobile, WebGL, and multiplayer platforms.</p>
+      <div class="fade-up">
+        <a href="#projects" class="hero-cta">View Projects</a>
+        <a href="/cdn-cgi/l/email-protection#89fae0f3e0feecfae0fde1e6e5ecc9e0eae5e6fceda7eae6e4" class="hero-cta-ghost">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-visual fade-up">
+      <div class="hero-badge-grid">
+        <div class="stat-card">
+          <div class="num">4+</div>
+          <div class="lbl">Years Experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">VR / AR</div>
+          <div class="lbl">Core Speciality</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">Mobile</div>
+          <div class="lbl">iOS & Android</div>
+        </div>
+        <div class="stat-card accent">
+          <div class="num">Unity Developer</div>
+          <div class="lbl">Real-time 3D · Gaming · Interactive Systems</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">About</p>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a Unity Developer with 4 years of experience building high-performance, real-time 3D environments and interactive applications — spanning Virtual Reality, Augmented Reality, WebGL, and mobile platforms.</p>
+        <p>Proficient in C# and deeply familiar with Unity's graphics pipeline, I specialise in optimising real-time systems and developing interactive gaming and simulation interfaces. I've shipped projects across engineering, gaming, and industrial sectors, working closely with global teams in Agile environments.</p>
+        <p>I bring strong debugging capability, a solid grasp of performance optimisation, and hands-on experience with multiplayer systems — making me well-suited for roles that demand both technical depth and collaborative delivery.</p>
+      </div>
+      <div class="contact-block">
+        <div class="contact-item">
+          <span class="ci-label">Email</span>
+          <span class="ci-value"><a href="/cdn-cgi/l/email-protection#12617b687b6577617b667a7d7e77527b717e7d67763c717d7f"><span class="__cf_email__" data-cfemail="cfbca6b5a6b8aabca6bba7a0a3aa8fa6aca3a0baabe1aca0a2">[email&#160;protected]</span></a></span>
+        </div>
+        <div class="contact-item">
+          <span class="ci-label">Phone</span>
+          <span class="ci-value">+27 83 347 3173</span>
+        </div>
+        <div class="contact-item">
+          <span class="ci-label">Location</span>
+          <span class="ci-value">Tembisa, Gauteng</span>
+        </div>
+        <div class="contact-item">
+          <span class="ci-label">Address</span>
+          <span class="ci-value">64 Lagos Street, Vusimuzi Section, Tembisa, 1632</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">Skills</p>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Core</h3>
+        <div class="tag-list">
+          <span class="tag highlight">Unity</span>
+          <span class="tag highlight">C#</span>
+          <span class="tag highlight">VR</span>
+          <span class="tag highlight">AR</span>
+          <span class="tag highlight">WebGL</span>
+          <span class="tag">OOP</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Multiplayer & 3D</h3>
+        <div class="tag-list">
+          <span class="tag highlight">Photon Multiplayer VR</span>
+          <span class="tag">Three.js</span>
+          <span class="tag">Babylon.js</span>
+          <span class="tag">A-Frame</span>
+          <span class="tag">3D Animation</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Programming</h3>
+        <div class="tag-list">
+          <span class="tag highlight">C#</span>
+          <span class="tag">C++</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">React</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">InfluxDB</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Workflow</h3>
+        <div class="tag-list">
+          <span class="tag">Git</span>
+          <span class="tag">Agile</span>
+          <span class="tag">DevOps</span>
+          <span class="tag">Figma</span>
+          <span class="tag">Version Control</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Production</h3>
+        <div class="tag-list">
+          <span class="tag">3D Flythrough Videos</span>
+          <span class="tag">UI/UX</span>
+          <span class="tag">Real-time Data</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">Experience</p>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div>
+          <div class="tl-date">August 2024 — Present</div>
+          <div class="tl-company">Zutari</div>
+        </div>
+        <div>
+          <div class="tl-role">Unity Developer</div>
+          <ul class="tl-bullets">
+            <li>Developed engineering-focused VR, AR, and WebGL applications with emphasis on real-time 3D performance and graphical fidelity</li>
+            <li>Optimised performance of real-time 3D systems to meet demanding engineering client requirements</li>
+            <li>Implemented object-oriented programming principles in C# across complex, production-grade projects</li>
+            <li>Created flythrough 3D visualisation videos and animations for engineering presentations</li>
+            <li>Integrated InfluxDB real-time data streams into interactive 3D dashboards</li>
+            <li>Managed project files using Git; collaborated with global product teams in an Agile environment</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div>
+          <div class="tl-date">August 2022 — July 2024</div>
+          <div class="tl-company">X Reality Lab</div>
+        </div>
+        <div>
+          <div class="tl-role">Virtual Reality Developer</div>
+          <ul class="tl-bullets">
+            <li>Developed high-performance VR engineering applications using Unity</li>
+            <li>Designed and implemented multiplayer systems for real-time player interactions using Photon</li>
+            <li>Integrated 3D models and spatial audio into VR applications for high-fidelity immersive experiences</li>
+            <li>Participated in code reviews and testing to maintain quality across interactive systems</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div>
+          <div class="tl-date">July 2021 — February 2022</div>
+          <div class="tl-company">MonoByte Group</div>
+        </div>
+        <div>
+          <div class="tl-role">Unity Game Developer</div>
+          <ul class="tl-bullets">
+            <li>Developed mobile Unity interactions for iOS and Android platforms</li>
+            <li>Collaborated with designers to implement engaging and optimised gameplay mechanics in Unity</li>
+            <li>Wrote efficient C# code for game logic, animations, and UI systems</li>
+            <li>Managed project files using Git for version control and team collaboration</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label">Projects</p>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-video-wrap">
+          <!-- To add your video: replace this placeholder block with:
+               <video src="videos/robot-simulation.mp4" autoplay loop muted playsinline></video> -->
+          <div class="project-placeholder">
+            <div class="play-icon"></div>
+            <span>robot-simulation.mp4</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-type">Virtual Reality · Training Simulation</div>
+          <div class="project-name">VR Robot Assembly Simulator</div>
+          <div class="project-desc">A dual-mode VR training application built in Unity. <strong style="font-weight:500;color:var(--text)">Training mode</strong> guides users through assembling robot parts with step-by-step instructions and a live part counter. <strong style="font-weight:500;color:var(--text)">Test mode</strong> evaluates the user's ability to complete the assembly independently — ideal for industrial training and simulation.</div>
+          <div class="tag-list">
+            <span class="tag highlight">Unity</span>
+            <span class="tag highlight">C#</span>
+            <span class="tag highlight">VR</span>
+            <span class="tag">Simulation</span>
+            <span class="tag">Training Systems</span>
+            <span class="tag">3D Interaction</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-video-wrap">
+          <!-- To add your video: replace this placeholder block with:
+               <video src="videos/pc-assembly.mp4" autoplay loop muted playsinline></video> -->
+          <div class="project-placeholder">
+            <div class="play-icon"></div>
+            <span>pc-assembly.mp4</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-type">Virtual Reality · Interactive Assembly</div>
+          <div class="project-name">VR Computer Case Assembly</div>
+          <div class="project-desc">An immersive VR experience where users physically assemble a computer case component by component inside a virtual environment. Built to demonstrate real-world spatial interaction, hand tracking, and object snapping mechanics in Unity.</div>
+          <div class="tag-list">
+            <span class="tag highlight">Unity</span>
+            <span class="tag highlight">C#</span>
+            <span class="tag highlight">VR</span>
+            <span class="tag">Object Interaction</span>
+            <span class="tag">Hand Tracking</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-video-wrap">
+          <!-- To add your video: replace this placeholder block with:
+               <video src="videos/multiplayer-vr.mp4" autoplay loop muted playsinline></video> -->
+          <div class="project-placeholder">
+            <div class="play-icon"></div>
+            <span>multiplayer-vr.mp4</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-type">Multiplayer · Virtual Reality</div>
+          <div class="project-name">Multiplayer VR Environment</div>
+          <div class="project-desc">A shared virtual reality space where multiple users can join the same environment simultaneously, see each other's avatars, and communicate in real time. Built with Unity and Photon Networking, showcasing live synchronisation, spatial audio, and collaborative interaction.</div>
+          <div class="tag-list">
+            <span class="tag highlight">Unity</span>
+            <span class="tag highlight">Photon</span>
+            <span class="tag highlight">C#</span>
+            <span class="tag">Real-time Sync</span>
+            <span class="tag">Spatial Audio</span>
+            <span class="tag">Multiplayer</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-video-wrap">
+          <!-- To add your video/render: replace this placeholder block with:
+               <video src="videos/blender-house.mp4" autoplay loop muted playsinline></video>
+               or an image: <img src="images/blender-house.jpg" style="width:100%;height:100%;object-fit:cover"> -->
+          <div class="project-placeholder">
+            <div class="play-icon"></div>
+            <span>blender-house.mp4</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-type">3D Modelling · Blender</div>
+          <div class="project-name">Architectural House Model</div>
+          <div class="project-desc">A detailed 3D house modelled entirely in Blender, demonstrating proficiency in architectural visualisation, mesh modelling, texturing, and scene lighting. Showcases the full 3D pipeline from concept through to rendered output.</div>
+          <div class="tag-list">
+            <span class="tag highlight">Blender</span>
+            <span class="tag">3D Modelling</span>
+            <span class="tag">Texturing</span>
+            <span class="tag">Architectural Viz</span>
+            <span class="tag">Rendering</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Video instructions for later -->
+    <div style="margin-top: 2.5rem; padding: 1.5rem; background: var(--accent-light); border-radius: 10px; border: 1px solid rgba(45,90,61,0.15);">
+      <p style="font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 0.4rem;">Adding your project videos</p>
+      <p style="font-size: 13px; color: var(--muted); line-height: 1.7;">Place your video files in a <code style="background: rgba(0,0,0,0.06); padding: 1px 5px; border-radius: 3px; font-family: 'DM Mono', monospace; font-size: 12px;">videos/</code> folder alongside this file. Then replace each placeholder comment in the HTML with a <code style="background: rgba(0,0,0,0.06); padding: 1px 5px; border-radius: 3px; font-family: 'DM Mono', monospace; font-size: 12px;">&lt;video&gt;</code> tag pointing to your file. You can also delete this notice once done.</p>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <p class="section-label">Education</p>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="institution">Tshwane University of Technology</div>
+        <div class="degree">National Diploma: IT (Multimedia)</div>
+        <div class="years">2019 – 2022</div>
+      </div>
+      <div class="edu-card">
+        <div class="institution">JB Matabane Secondary School</div>
+        <div class="degree">Matric — Bachelor's Pass</div>
+        <div class="years">2014 – 2018</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-note">© 2025 Siziwe Sithole</p>
+    <div class="footer

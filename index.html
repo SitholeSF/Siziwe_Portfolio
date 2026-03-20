@@ -378,6 +378,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
+      cursor: pointer;
     }
 
     .project-video-wrap video {
@@ -385,6 +387,79 @@
       height: 100%;
       object-fit: cover;
     }
+
+    .project-video-wrap:hover .expand-btn { opacity: 1; }
+
+    .expand-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 34px;
+      height: 34px;
+      background: rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.2s, background 0.2s;
+      z-index: 10;
+    }
+
+    .expand-btn:hover { background: rgba(0,0,0,0.8); }
+
+    .expand-btn svg { width: 16px; height: 16px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox-inner {
+      position: relative;
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .lightbox-inner video {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+      max-height: 80vh;
+      object-fit: contain;
+      background: #000;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -44px;
+      right: 0;
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+    .lightbox-close svg { width: 16px; height: 16px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; }
 
     .project-placeholder {
       width: 100%;
@@ -555,7 +630,7 @@
       <p class="hero-desc fade-up">Specialist in high-performance real-time 3D environments, interactive gaming interfaces, and immersive VR/AR applications. 4 years building across mobile, WebGL, and multiplayer platforms.</p>
       <div class="fade-up">
         <a href="#projects" class="hero-cta">View Projects</a>
-        <a href="mailto:siziwesithole@icloud.com" class="hero-cta-ghost">Get in Touch</a>
+        <a href="/cdn-cgi/l/email-protection#81f2e8fbe8f6e4f2e8f5e9eeede4c1e8e2edeef4e5afe2eeec" class="hero-cta-ghost">Get in Touch</a>
       </div>
     </div>
     <div class="fade-up">
@@ -592,7 +667,7 @@
       <div class="contact-block">
         <div class="contact-item">
           <span class="ci-label">Email</span>
-          <span class="ci-value"><a href="mailto:siziwesithole@icloud.com">siziwesithole@icloud.com</a></span>
+          <span class="ci-value"><a href="/cdn-cgi/l/email-protection#285b4152415f4d5b415c4047444d68414b44475d4c064b4745"><span class="__cf_email__" data-cfemail="e6958f9c8f9183958f928e898a83a68f858a899382c885898b">[email&#160;protected]</span></a></span>
         </div>
         <div class="contact-item">
           <span class="ci-label">Phone</span>
@@ -678,7 +753,7 @@
 
       <div class="timeline-item">
         <div>
-          <div class="tl-date">August 2023 — Present</div>
+          <div class="tl-date">August 2024 — Present</div>
           <div class="tl-company">Zutari</div>
         </div>
         <div>
@@ -696,7 +771,7 @@
 
       <div class="timeline-item">
         <div>
-          <div class="tl-date">August 2022 — July 2023</div>
+          <div class="tl-date">August 2022 — July 2024</div>
           <div class="tl-company">X Reality Lab</div>
         </div>
         <div>
@@ -735,10 +810,10 @@
     <div class="projects-grid">
 
       <div class="project-card">
-        <div class="project-video-wrap">
-          <div class="project-placeholder">
-            <div class="play-icon"></div>
-            <span>Upload robot simulation video</span>
+        <div class="project-video-wrap" onclick="openLightbox('Robot simulation_compressed.mp4')">
+          <video src="Robot simulation_compressed.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover"></video>
+          <div class="expand-btn" title="Expand video">
+            <svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
           </div>
         </div>
         <div class="project-body">
@@ -757,8 +832,11 @@
       </div>
 
       <div class="project-card">
-        <div class="project-video-wrap">
+        <div class="project-video-wrap" onclick="openLightbox('PC.mp4')">
           <video src="PC.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover"></video>
+          <div class="expand-btn" title="Expand video">
+            <svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+          </div>
         </div>
         <div class="project-body">
           <div class="project-type">Virtual Reality · Interactive Assembly</div>
@@ -775,8 +853,11 @@
       </div>
 
       <div class="project-card">
-        <div class="project-video-wrap">
+        <div class="project-video-wrap" onclick="openLightbox('MultiplayerVR_Game.mp4')">
           <video src="MultiplayerVR_Game.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover"></video>
+          <div class="expand-btn" title="Expand video">
+            <svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+          </div>
         </div>
         <div class="project-body">
           <div class="project-type">Multiplayer · Virtual Reality</div>
@@ -794,8 +875,11 @@
       </div>
 
       <div class="project-card">
-        <div class="project-video-wrap">
+        <div class="project-video-wrap" onclick="openLightbox('3D House.mp4')">
           <video src="3D House.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover"></video>
+          <div class="expand-btn" title="Expand video">
+            <svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+          </div>
         </div>
         <div class="project-body">
           <div class="project-type">3D Modelling · Blender</div>
@@ -833,14 +917,44 @@
 
   <!-- FOOTER -->
   <footer>
-    <p class="footer-note">©  Siziwe Sithole</p>
+    <p class="footer-note">© 2025 Siziwe Sithole</p>
     <div class="footer-links">
-      <a href="https://www.linkedin.com/in/siziwesithole/" target="_blank">LinkedIn</a>
-      <a href="mailto:siziwesithole@icloud.com">Email</a>
-      <a href="tel:+27833473173">Phone</a>
-      <a href="#hero">Back to top ↑</a>
+      <a href="https://www.linkedin.com/in/siziwesithole/" target="_blank">Link
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-inner">
+      <div class="lightbox-close" onclick="closeLightbox()">
+        <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+      <video id="lightbox-video" controls autoplay style="width:100%;border-radius:8px;max-height:80vh;background:#000;display:block;"></video>
     </div>
-  </footer>
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      const lb = document.getElementById('lightbox');
+      const vid = document.getElementById('lightbox-video');
+      vid.src = src;
+      vid.play();
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(e) {
+      if (e && e.target !== document.getElementById('lightbox') && !e.target.closest('.lightbox-close')) return;
+      const lb = document.getElementById('lightbox');
+      const vid = document.getElementById('lightbox-video');
+      vid.pause();
+      vid.src = '';
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
 
 </body>
 </html>

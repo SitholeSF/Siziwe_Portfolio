@@ -28,12 +28,12 @@
       font-family: 'DM Sans', sans-serif;
       background: var(--bg);
       color: var(--text);
-      font-size: 16px;
-      line-height: 1.65;
+      font-size: 18px;
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -42,7 +42,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 2.5rem;
-      height: 60px;
+      height: 64px;
       background: rgba(245,244,240,0.88);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
@@ -50,21 +50,17 @@
     }
 
     .nav-logo {
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 500;
       letter-spacing: 0.04em;
       color: var(--text);
       text-decoration: none;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
 
     .nav-links a {
-      font-size: 13px;
+      font-size: 15px;
       color: var(--muted);
       text-decoration: none;
       letter-spacing: 0.02em;
@@ -73,13 +69,12 @@
 
     .nav-links a:hover { color: var(--text); }
 
-    /* ── SECTIONS ── */
+    /* SECTIONS */
     section { padding: 6rem 2.5rem; max-width: 960px; margin: 0 auto; }
 
-    /* ── HERO ── */
+    /* HERO */
     #hero {
-      padding-top: 9rem;
-      padding-bottom: 5rem;
+      padding: 9rem 2.5rem 5rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 3rem;
@@ -89,7 +84,7 @@
     }
 
     .hero-eyebrow {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -108,12 +103,11 @@
 
     .hero-name em {
       font-style: italic;
-      font-weight: 500;
       color: var(--accent);
     }
 
     .hero-desc {
-      font-size: 16px;
+      font-size: 17px;
       color: var(--muted);
       line-height: 1.8;
       max-width: 400px;
@@ -124,14 +118,12 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 22px;
+      padding: 12px 24px;
       background: var(--accent);
       color: #fff;
       border-radius: 4px;
       text-decoration: none;
-      font-size: 14px;
-      font-weight: 400;
-      letter-spacing: 0.02em;
+      font-size: 15px;
       transition: opacity 0.2s, transform 0.2s;
     }
 
@@ -141,26 +133,17 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 22px;
+      padding: 12px 24px;
       border: 1px solid var(--border);
       color: var(--text);
       border-radius: 4px;
       text-decoration: none;
-      font-size: 14px;
-      font-weight: 400;
-      letter-spacing: 0.02em;
+      font-size: 15px;
       transition: background 0.2s, transform 0.2s;
       margin-left: 0.75rem;
     }
 
     .hero-cta-ghost:hover { background: var(--surface); transform: translateY(-1px); }
-
-    .hero-visual {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
 
     .hero-badge-grid {
       display: grid;
@@ -184,7 +167,7 @@
     }
 
     .stat-card .lbl {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--muted);
       letter-spacing: 0.04em;
       margin-top: 2px;
@@ -199,9 +182,9 @@
     .stat-card.accent .num,
     .stat-card.accent .lbl { color: rgba(255,255,255,0.9); }
 
-    /* ── DIVIDER ── */
+    /* SECTION LABEL */
     .section-label {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 500;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -219,7 +202,7 @@
       background: var(--border);
     }
 
-    /* ── ABOUT ── */
+    /* ABOUT */
     .about-grid {
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
@@ -228,7 +211,7 @@
     }
 
     .about-text {
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 300;
       line-height: 1.85;
       color: var(--text);
@@ -236,6 +219,7 @@
 
     .about-text p + p { margin-top: 1rem; }
 
+    /* CONTACT BLOCK */
     .contact-block {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -246,31 +230,35 @@
     .contact-item {
       display: flex;
       flex-direction: column;
-      padding: 0.7rem 0;
+      padding: 0.85rem 0;
       border-bottom: 1px solid var(--border);
     }
 
     .contact-item:last-child { border-bottom: none; }
 
-    .contact-item .ci-label {
+    .ci-label {
       font-size: 11px;
       color: var(--muted);
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
     }
 
-    .contact-item .ci-value {
-      font-size: 14px;
+    .ci-value {
+      font-size: 15px;
       color: var(--text);
+      word-break: break-word;
     }
 
-    .contact-item a {
+    .ci-value a {
       color: var(--accent);
       text-decoration: none;
+      transition: opacity 0.2s;
     }
 
-    /* ── SKILLS ── */
+    .ci-value a:hover { opacity: 0.7; }
+
+    /* SKILLS */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -293,22 +281,17 @@
       margin-bottom: 1rem;
     }
 
-    .tag-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
 
     .tag {
       display: inline-block;
-      padding: 4px 10px;
+      padding: 5px 11px;
       background: var(--tag-bg);
       color: var(--tag-text);
-      font-size: 12px;
+      font-size: 13px;
       border-radius: 4px;
       font-family: 'DM Mono', monospace;
       font-weight: 300;
-      letter-spacing: 0.01em;
     }
 
     .tag.highlight {
@@ -316,8 +299,8 @@
       color: var(--accent);
     }
 
-    /* ── EXPERIENCE ── */
-    .timeline { display: flex; flex-direction: column; gap: 0; }
+    /* EXPERIENCE */
+    .timeline { display: flex; flex-direction: column; }
 
     .timeline-item {
       display: grid;
@@ -330,49 +313,43 @@
     .timeline-item:last-child { border-bottom: none; }
 
     .tl-date {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--muted);
-      font-weight: 400;
       padding-top: 4px;
     }
 
     .tl-company {
-      font-size: 12px;
+      font-size: 13px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-top: 4px;
+      margin-top: 5px;
     }
 
     .tl-role {
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 400;
-      color: var(--text);
       margin-bottom: 0.75rem;
     }
 
-    .tl-bullets {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
+    .tl-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
 
     .tl-bullets li {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--muted);
-      padding-left: 1rem;
+      padding-left: 1.1rem;
       position: relative;
+      line-height: 1.65;
     }
 
     .tl-bullets li::before {
       content: '—';
       position: absolute;
       left: 0;
-      color: var(--border);
+      color: rgba(0,0,0,0.15);
     }
 
-    /* ── PROJECTS ── */
+    /* PROJECTS */
     .projects-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -395,7 +372,6 @@
     }
 
     .project-video-wrap {
-      position: relative;
       background: #1a1a18;
       aspect-ratio: 16/9;
       overflow: hidden;
@@ -417,16 +393,16 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
       color: rgba(255,255,255,0.3);
       font-size: 13px;
       font-family: 'DM Mono', monospace;
       font-weight: 300;
     }
 
-    .project-placeholder .play-icon {
-      width: 40px;
-      height: 40px;
+    .play-icon {
+      width: 44px;
+      height: 44px;
       border: 1px solid rgba(255,255,255,0.2);
       border-radius: 50%;
       display: flex;
@@ -434,26 +410,25 @@
       justify-content: center;
     }
 
-    .project-placeholder .play-icon::after {
+    .play-icon::after {
       content: '';
       display: block;
-      width: 0;
-      height: 0;
-      border-top: 7px solid transparent;
-      border-bottom: 7px solid transparent;
-      border-left: 12px solid rgba(255,255,255,0.4);
+      width: 0; height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 13px solid rgba(255,255,255,0.4);
       margin-left: 3px;
     }
 
     .project-body {
-      padding: 1.4rem 1.5rem;
+      padding: 1.5rem 1.6rem;
       flex: 1;
       display: flex;
       flex-direction: column;
     }
 
     .project-type {
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--accent);
@@ -462,20 +437,20 @@
     }
 
     .project-name {
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 400;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.65rem;
     }
 
     .project-desc {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--muted);
-      line-height: 1.7;
+      line-height: 1.75;
       margin-bottom: 1rem;
       flex: 1;
     }
 
-    /* ── EDUCATION ── */
+    /* EDUCATION */
     .edu-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -486,28 +461,28 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 1.5rem;
+      padding: 1.6rem;
     }
 
     .edu-card .degree {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 400;
       margin-bottom: 0.3rem;
     }
 
     .edu-card .institution {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--accent);
       font-weight: 500;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.25rem;
     }
 
     .edu-card .years {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--muted);
     }
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer {
       border-top: 1px solid var(--border);
       padding: 2.5rem;
@@ -518,18 +493,12 @@
       justify-content: space-between;
     }
 
-    .footer-note {
-      font-size: 13px;
-      color: var(--muted);
-    }
+    .footer-note { font-size: 14px; color: var(--muted); }
 
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-    }
+    .footer-links { display: flex; gap: 1.5rem; }
 
     .footer-links a {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--muted);
       text-decoration: none;
       transition: color 0.2s;
@@ -537,28 +506,23 @@
 
     .footer-links a:hover { color: var(--text); }
 
-    /* ── ANIMATIONS ── */
+    /* ANIMATIONS */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .fade-up {
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards;
-    }
-
+    .fade-up { opacity: 0; animation: fadeUp 0.6s ease forwards; }
     .fade-up:nth-child(1) { animation-delay: 0.1s; }
     .fade-up:nth-child(2) { animation-delay: 0.2s; }
     .fade-up:nth-child(3) { animation-delay: 0.3s; }
     .fade-up:nth-child(4) { animation-delay: 0.4s; }
 
-    /* ── RESPONSIVE ── */
+    /* RESPONSIVE */
     @media (max-width: 768px) {
       nav { padding: 0 1.5rem; }
-      nav .nav-links { display: none; }
-      #hero { grid-template-columns: 1fr; padding-top: 7rem; }
-      .hero-badge-grid { display: grid; grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; padding-top: 7rem; padding-left: 1.5rem; padding-right: 1.5rem; }
       section { padding: 4rem 1.5rem; }
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
       .skills-grid { grid-template-columns: 1fr 1fr; }
@@ -584,17 +548,17 @@
   </nav>
 
   <!-- HERO -->
-  <div id="hero" style="padding-left: 2.5rem; padding-right: 2.5rem;">
+  <div id="hero">
     <div>
       <p class="hero-eyebrow fade-up">Unity Developer · 4 Years Experience</p>
       <h1 class="hero-name fade-up">Siziwe<br><em>Sithole</em></h1>
       <p class="hero-desc fade-up">Specialist in high-performance real-time 3D environments, interactive gaming interfaces, and immersive VR/AR applications. 4 years building across mobile, WebGL, and multiplayer platforms.</p>
       <div class="fade-up">
         <a href="#projects" class="hero-cta">View Projects</a>
-        <a href="/cdn-cgi/l/email-protection#89fae0f3e0feecfae0fde1e6e5ecc9e0eae5e6fceda7eae6e4" class="hero-cta-ghost">Get in Touch</a>
+        <a href="mailto:siziwesithole@icloud.com" class="hero-cta-ghost">Get in Touch</a>
       </div>
     </div>
-    <div class="hero-visual fade-up">
+    <div class="fade-up">
       <div class="hero-badge-grid">
         <div class="stat-card">
           <div class="num">4+</div>
@@ -627,14 +591,12 @@
       </div>
       <div class="contact-block">
         <div class="contact-item">
-          <span class="ci-label">LinkedIn</span>
-          <span class="ci-value"><a href="https://www.linkedin.com/in/siziwesithole/" target="_blank">linkedin.com/in/siziwesithole</a></span>
-        </div>
-          <span class="ci-value"><a href="/cdn-cgi/l/email-protection#12617b687b6577617b667a7d7e77527b717e7d67763c717d7f"><span class="__cf_email__" data-cfemail="cfbca6b5a6b8aabca6bba7a0a3aa8fa6aca3a0baabe1aca0a2">[email&#160;protected]</span></a></span>
+          <span class="ci-label">Email</span>
+          <span class="ci-value"><a href="mailto:siziwesithole@icloud.com">siziwesithole@icloud.com</a></span>
         </div>
         <div class="contact-item">
           <span class="ci-label">Phone</span>
-          <span class="ci-value">+27 83 347 3173</span>
+          <span class="ci-value"><a href="tel:+27833473173">083 347 3173</a></span>
         </div>
         <div class="contact-item">
           <span class="ci-label">Location</span>
@@ -643,6 +605,10 @@
         <div class="contact-item">
           <span class="ci-label">Address</span>
           <span class="ci-value">64 Lagos Street, Vusimuzi Section, Tembisa, 1632</span>
+        </div>
+        <div class="contact-item">
+          <span class="ci-label">LinkedIn</span>
+          <span class="ci-value"><a href="https://www.linkedin.com/in/siziwesithole/" target="_blank">linkedin.com/in/siziwesithole</a></span>
         </div>
       </div>
     </div>
@@ -746,7 +712,7 @@
 
       <div class="timeline-item">
         <div>
-          <div class="tl-date">June 2021 — December 2021</div>
+          <div class="tl-date">July 2021 — February 2022</div>
           <div class="tl-company">MonoByte Group</div>
         </div>
         <div>
@@ -770,7 +736,6 @@
 
       <div class="project-card">
         <div class="project-video-wrap">
-          <!-- Robot simulation video not yet uploaded — add it to your repo root and update src -->
           <div class="project-placeholder">
             <div class="play-icon"></div>
             <span>Upload robot simulation video</span>
@@ -847,12 +812,6 @@
       </div>
 
     </div>
-
-    <!-- Video instructions for later -->
-    <div style="margin-top: 2.5rem; padding: 1.5rem; background: var(--accent-light); border-radius: 10px; border: 1px solid rgba(45,90,61,0.15);">
-      <p style="font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 0.4rem;">Adding your project videos</p>
-      <p style="font-size: 13px; color: var(--muted); line-height: 1.7;">Place your video files in a <code style="background: rgba(0,0,0,0.06); padding: 1px 5px; border-radius: 3px; font-family: 'DM Mono', monospace; font-size: 12px;">videos/</code> folder alongside this file. Then replace each placeholder comment in the HTML with a <code style="background: rgba(0,0,0,0.06); padding: 1px 5px; border-radius: 3px; font-family: 'DM Mono', monospace; font-size: 12px;">&lt;video&gt;</code> tag pointing to your file. You can also delete this notice once done.</p>
-    </div>
   </section>
 
   <!-- EDUCATION -->
@@ -874,10 +833,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <p class="footer-note">© 2025 Siziwe Sithole</p>
-  <!-- FOOTER -->
-  <footer>
-    <p class="footer-note">© 2025 Siziwe Sithole</p>
+    <p class="footer-note">©  Siziwe Sithole</p>
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/siziwesithole/" target="_blank">LinkedIn</a>
       <a href="mailto:siziwesithole@icloud.com">Email</a>

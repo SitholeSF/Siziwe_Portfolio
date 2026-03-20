@@ -922,9 +922,9 @@
       <a href="https://www.linkedin.com/in/siziwesithole/" target="_blank">Link
 
   <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox" id="lightbox">
     <div class="lightbox-inner">
-      <div class="lightbox-close" onclick="closeLightbox()">
+      <div class="lightbox-close" id="lightbox-close">
         <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </div>
       <video id="lightbox-video" controls autoplay style="width:100%;border-radius:8px;max-height:80vh;background:#000;display:block;"></video>
@@ -941,8 +941,7 @@
       document.body.style.overflow = 'hidden';
     }
 
-    function closeLightbox(e) {
-      if (e && e.target !== document.getElementById('lightbox') && !e.target.closest('.lightbox-close')) return;
+    function doClose() {
       const lb = document.getElementById('lightbox');
       const vid = document.getElementById('lightbox-video');
       vid.pause();
@@ -951,8 +950,17 @@
       document.body.style.overflow = '';
     }
 
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) doClose();
+    });
+
+    document.getElementById('lightbox-close').addEventListener('click', function(e) {
+      e.stopPropagation();
+      doClose();
+    });
+
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'Escape') doClose();
     });
   </script>
 

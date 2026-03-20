@@ -417,14 +417,18 @@
       display: none;
       position: fixed;
       inset: 0;
-      z-index: 999;
+      z-index: 9999;
       background: rgba(0,0,0,0.92);
       align-items: center;
       justify-content: center;
-      padding: 1.5rem;
+      padding: 3rem 1.5rem 1.5rem;
+      pointer-events: none;
     }
 
-    .lightbox.open { display: flex; }
+    .lightbox.open {
+      display: flex;
+      pointer-events: all;
+    }
 
     .lightbox-inner {
       position: relative;
@@ -441,25 +445,9 @@
       background: #000;
     }
 
-    .lightbox-close {
-      position: absolute;
-      top: -44px;
-      right: 0;
-      width: 36px;
-      height: 36px;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.3); }
 
-    .lightbox-close:hover { background: rgba(255,255,255,0.2); }
-
-    .lightbox-close svg { width: 16px; height: 16px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; }
+    .lightbox-close svg { width: 16px; height: 16px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; }
 
     .project-placeholder {
       width: 100%;
@@ -924,10 +912,8 @@
   <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox">
     <div class="lightbox-inner">
-      <div class="lightbox-close" id="lightbox-close">
-        <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </div>
       <video id="lightbox-video" controls autoplay style="width:100%;border-radius:8px;max-height:80vh;background:#000;display:block;"></video>
+      <p style="text-align:center;color:rgba(255,255,255,0.4);font-size:13px;margin-top:12px;">Click outside the video or press Esc to close</p>
     </div>
   </div>
 
@@ -942,21 +928,17 @@
     }
 
     function doClose() {
-      const lb = document.getElementById('lightbox');
       const vid = document.getElementById('lightbox-video');
       vid.pause();
       vid.src = '';
-      lb.classList.remove('open');
+      document.getElementById('lightbox').classList.remove('open');
       document.body.style.overflow = '';
     }
 
     document.getElementById('lightbox').addEventListener('click', function(e) {
-      if (e.target === this) doClose();
-    });
-
-    document.getElementById('lightbox-close').addEventListener('click', function(e) {
+      e.preventDefault();
       e.stopPropagation();
-      doClose();
+      if (e.target === this) doClose();
     });
 
     document.addEventListener('keydown', function(e) {
